@@ -2623,6 +2623,7 @@ body.no-scroll {
   color: #6a6e76;
   padding-bottom: 20px;
   height: auto;
+  border-radius: 0;
   font-size: 30px;
 }
 @media (max-width: 1300px) {
