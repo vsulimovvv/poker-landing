@@ -2482,7 +2482,23 @@ body.no-scroll {
   width: 100%;
   overflow: hidden;
 }
-.form-submit__inner {
+.form-submit__end {
+  display: none;
+  font-family: "PT Root UI";
+  color: var(--color-accent);
+  font-size: 30px;
+  text-align: center;
+  font-weight: 700;
+}
+@media (max-width: 1300px) {
+  .form-submit__end {
+    font-size: calc(
+        20px + 10 *
+          ((100vw - 360px) / 940)
+      );
+  }
+}
+.form-submit__steps {
   margin-bottom: 30px;
 }
 .form-submit__group {

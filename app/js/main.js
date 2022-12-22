@@ -14,9 +14,13 @@ window.addEventListener('DOMContentLoaded', () => {
     const submitBtn = document.querySelector('.submit-btn');
     const formInputs = document.querySelectorAll('.form-submit__input');
     const formSelect = document.querySelector('.form-submit__select');
+    const formEnd = document.querySelector('.form-submit__end');
+    const formInner = document.querySelector('.form-submit__inner');
 
     submitBtn.addEventListener('click', (e) => {
-      alert('Спасибо за заявку');
+      e.preventDefault();
+      formEnd.style.display = 'block';
+      formInner.style.display = 'none';
     });
 
     let formStepsNum = 0;
