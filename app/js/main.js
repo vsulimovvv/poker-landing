@@ -1,8 +1,82 @@
 window.addEventListener('DOMContentLoaded', () => {
   //   // * ===== Mask input
   //   $('input[type="tel"]').mask('+7 (999) 999-99-99');
-  //   // * ===== Nice Select
-  //   // $('select').niceSelect();
+  // * ===== Nice Select
+  $('select').niceSelect();
+
+  // * ===== MultiStep Form
+  (function multiStep() {
+    const prevBtns = document.querySelectorAll('.btn-prev');
+    const nextBtns = document.querySelectorAll('.btn-next');
+    const formSteps = document.querySelectorAll('.form-submit__step');
+    const progressSteps = document.querySelectorAll('.form-submit__line');
+    const countEl = document.querySelector('.count-steps');
+    const submitBtn = document.querySelector('.submit-btn');
+    const formInputs = document.querySelectorAll('.form-submit__input');
+    const formSelect = document.querySelector('.form-submit__select');
+
+    submitBtn.addEventListener('click', (e) => {
+      alert('Спасибо за заявку');
+    });
+
+    let formStepsNum = 0;
+
+    nextBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        if (
+          formInputs[formStepsNum].hasAttribute('required') &&
+          formInputs[formStepsNum].value.length
+        ) {
+          formStepsNum++;
+          updateFormSteps();
+          updateProgressbar();
+        } else if (
+          !formInputs[formStepsNum].hasAttribute('required') ||
+          formSelect.value != 0
+        ) {
+          formStepsNum++;
+          updateFormSteps();
+          updateProgressbar();
+        } else {
+          alert('Заполните поле');
+        }
+      });
+    });
+
+    prevBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        formStepsNum--;
+        updateFormSteps();
+        updateProgressbar();
+      });
+    });
+
+    function updateFormSteps() {
+      formSteps.forEach((formStep) => {
+        formStep.classList.contains('active') &&
+          formStep.classList.remove('active');
+      });
+
+      formSteps[formStepsNum].classList.add('active');
+    }
+
+    function updateProgressbar() {
+      progressSteps.forEach((progressStep, idx) => {
+        if (idx < formStepsNum + 1) {
+          progressStep.classList.add('active');
+        } else {
+          progressStep.classList.remove('active');
+        }
+      });
+
+      const progressActive = document.querySelectorAll(
+        '.form-submit__line.active'
+      );
+      console.log(progressActive);
+
+      countEl.textContent = formSteps.length + 1 - progressActive.length;
+    }
+  })();
 
   // * ===== Slider
   (function slider() {
@@ -23,7 +97,7 @@ window.addEventListener('DOMContentLoaded', () => {
       },
     });
   })();
-  
+
   // * ===== Slider
   (function slider() {
     const sliderEl = document.querySelector('.results__slider');
@@ -32,6 +106,18 @@ window.addEventListener('DOMContentLoaded', () => {
       navigation: {
         nextEl: '.results__slider .swiper-button-next',
         prevEl: '.results__slider .swiper-button-prev',
+      },
+    });
+  })();
+
+  // * ===== Slider
+  (function slider() {
+    const sliderEl = document.querySelector('.popup__slider');
+    new Swiper(sliderEl, {
+      slidesPerView: 1,
+      navigation: {
+        nextEl: '.popup__wrapper .swiper-button-next',
+        prevEl: '.popup__wrapper .swiper-button-prev',
       },
     });
   })();
@@ -80,21 +166,6 @@ window.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', scrollActive);
   })();
 
-  //   // * ===== Slider
-  //   (function slider() {
-  //     const sliderEl = document.querySelector('.price-list-top__slider');
-  //     new Swiper(sliderEl, {
-  //       slidesPerView: 'auto',
-  //       centeredSlides: true,
-  //       slideToClickedSlide: true,
-  //       initialSlide: 4,
-  //       spaceBetween: 20,
-  //       navigation: {
-  //         nextEl: '.price-list-top__slider .swiper-button-next',
-  //         prevEl: '.price-list-top__slider .swiper-button-prev',
-  //       },
-  //     });
-  //   })();
   // * ===== Fixed Header
   (function fixedHeader() {
     function scrollHeader() {
@@ -115,6 +186,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
     changeBg();
   })();
+
   //   // * ===== Show Menu
   //   (function showMenu() {
   //     const menuBtn = document.querySelector('.header__toggle');
@@ -138,77 +210,38 @@ window.addEventListener('DOMContentLoaded', () => {
   //       body.classList.remove('no-scroll');
   //     });
   //   })();
-  //   // * ===== Modal
-  //   (function modals() {
-  //     function bindModal(openBtn, modal, close) {
-  //       const openBtnEl = document.querySelectorAll(openBtn);
-  //       const modalEl = document.querySelector(modal);
-  //       const closeEl = document.querySelectorAll(close);
-  //       const body = document.querySelector('body');
-  //       if (modalEl) {
-  //         openBtnEl.forEach((el) => {
-  //           el.addEventListener('click', (e) => {
-  //             if (e.target) {
-  //               e.preventDefault();
-  //             }
-  //             modalEl.classList.add('active');
-  //             body.classList.add('no-scroll');
-  //           });
-  //         });
-  //         closeEl.forEach((btn) => {
-  //           btn.addEventListener('click', (e) => {
-  //             modalEl.classList.remove('active');
-  //             body.classList.remove('no-scroll');
-  //           });
-  //         });
-  //         modalEl.addEventListener('click', (e) => {
-  //           if (e.target === modalEl) {
-  //             modalEl.classList.remove('active');
-  //             body.classList.remove('no-scroll');
-  //           }
-  //         });
-  //       }
-  //     }
-  //     bindModal('.online-booking-btn', '.popup--online-booking', '.popup__close');
-  //   })();
-  //   // * ===== Toggle Tabs
-  //   function someTabs(headerSelector, tabSelector, contentSelector, activeClass) {
-  //     const header = document.querySelectorAll(headerSelector);
-  //     const tab = document.querySelectorAll(tabSelector);
-  //     const content = document.querySelectorAll(contentSelector);
-  //     header.forEach((el) => {
-  //       if (el) {
-  //         hideTabContent();
-  //         showTabContent();
-  //         function hideTabContent() {
-  //           content.forEach((item) => {
-  //             item.classList.remove('active');
-  //           });
-  //           tab.forEach((item) => {
-  //             item.classList.remove(activeClass);
-  //           });
-  //         }
-  //         function showTabContent(i = 0) {
-  //           content[i].classList.add('active');
-  //           tab[i].classList.add(activeClass);
-  //         }
-  //         header.forEach((item) => {
-  //           if (item) {
-  //             item.addEventListener('click', (e) => {
-  //               const target = e.target;
-  //               if (target.classList.contains(tabSelector.replace(/\./, ''))) {
-  //                 tab.forEach((item, i) => {
-  //                   if (target == item || target.parentNode == item) {
-  //                     hideTabContent();
-  //                     showTabContent(i);
-  //                   }
-  //                 });
-  //               }
-  //             });
-  //           }
-  //         });
-  //       }
-  //     });
-  //   }
-  //   someTabs('.contacts', '.contacts-top__item', '.contacts__content', 'active');
+
+  // * ===== Modal
+  (function modals() {
+    function bindModal(openBtn, modal, close) {
+      const openBtnEl = document.querySelectorAll(openBtn);
+      const modalEl = document.querySelector(modal);
+      const closeEl = document.querySelectorAll(close);
+      const body = document.querySelector('body');
+      if (modalEl) {
+        openBtnEl.forEach((el) => {
+          el.addEventListener('click', (e) => {
+            if (e.target) {
+              e.preventDefault();
+            }
+            modalEl.classList.add('active');
+            body.classList.add('no-scroll');
+          });
+        });
+        closeEl.forEach((btn) => {
+          btn.addEventListener('click', (e) => {
+            modalEl.classList.remove('active');
+            body.classList.remove('no-scroll');
+          });
+        });
+        modalEl.addEventListener('click', (e) => {
+          if (e.target === modalEl) {
+            modalEl.classList.remove('active');
+            body.classList.remove('no-scroll');
+          }
+        });
+      }
+    }
+    bindModal('.coach-btn', '.popup--results', '.popup__close');
+  })();
 });
