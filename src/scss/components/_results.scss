@@ -1,0 +1,195 @@
+.results {
+  @include adaptive-value('padding-top', 90, 50, 1);
+  @include adaptive-value('padding-bottom', 90, 50, 1);
+
+  &__wrapper {
+    display: grid;
+    grid-template-columns: 1fr 0.9fr;
+    gap: 40px;
+
+    @include breakpointsMaxW($bp-container) {
+      gap: 30px;
+    }
+
+    @include breakpointsMaxW($bp-991) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__title {
+    @include fz50();
+    @include adaptive-value('margin-bottom', 25, 20, 1);
+  }
+
+  &__text {
+    @include adaptive-value('font-size', 18, 15, 1);
+    @include adaptive-value('margin-bottom', 35, 25, 1);
+    max-width: 580px;
+
+    @include breakpointsMaxW($bp-991) {
+      max-width: 100%;
+    }
+  }
+
+  &__name {
+    display: block;
+    color: #282b32;
+    @include adaptive-value('font-size', 21, 16, 1);
+    @include adaptive-value('margin-bottom', 30, 20, 1);
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+
+    @include breakpointsMaxW($bp-container) {
+      gap: 15px;
+    }
+
+    @include breakpointsMaxW($bp-768) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__right {
+    width: 100%;
+    min-width: 0;
+  }
+
+  &__slider {
+    height: 615px;
+    // padding-right: 30px;
+    width: calc(100% - 30px);
+    // box-shadow: 0px 18px 68px 0px rgba(0, 0, 0, 0.1);
+    // padding: 20px;
+    border-radius: 20px;
+
+    @include breakpointsMaxW($bp-991) {
+      display: none;
+    }
+  }
+
+  &__slide {
+    // box-shadow: 0px 18px 68px 0px rgba(0, 0, 0, 0.1);
+    img {
+      @include img(contain);
+      border-radius: 20px;
+    }
+  }
+
+  &__left {
+    position: relative;
+  }
+
+  &__line {
+    width: 1px;
+    height: 77px;
+    background-color: #d4d6e6;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 55px;
+
+    @include breakpointsMaxW($bp-991) {
+      display: none;
+    }
+  }
+
+  &__chevron {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 1px solid #2e2f37;
+    width: 40px;
+    height: 40px;
+    background-color: var(--color-white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 250ms ease;
+
+    @include breakpointsMaxW($bp-991) {
+      display: none;
+    }
+
+    &:hover {
+      background-color: var(--color-accent);
+      border-color: transparent;
+
+      svg {
+        path {
+          fill: var(--color-white);
+        }
+      }
+    }
+
+    svg {
+      width: 15px;
+      height: 15px;
+    }
+  }
+
+  .swiper-button-next {
+    top: 65%;
+  }
+
+  .swiper-button-prev {
+    left: initial;
+    right: 10px;
+    top: 58%;
+  }
+
+  .results-item {
+    text-align: center;
+    background-color: var(--color-white);
+    border: 2px solid #4f7b6f;
+    border-radius: 10px;
+    position: relative;
+    padding: 65px 30px 30px;
+    width: 100%;
+
+    @include adaptive-value('padding-left', 30, 10, 1);
+    @include adaptive-value('padding-right', 30, 10, 1);
+
+    @include breakpointsMaxW($bp-991) {
+      padding-right: 30px;
+      padding-left: 30px;
+    }
+
+    @include breakpointsMaxW($bp-768) {
+      padding-top: 25px;
+      padding-bottom: 25px;
+      padding-left: 70px;
+      padding-right: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    &::after {
+      @include elDef();
+      width: 30px;
+      height: 30px;
+      top: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+      @include backgroundImage(url('../img/check.png'), contain);
+
+      @include breakpointsMaxW($bp-768) {
+        left: 25px;
+        transform: translateX(0);
+        top: 25px;
+        width: 28px;
+        height: 28px;
+      }
+    }
+
+    &__text {
+      font-size: 15px;
+    }
+  }
+}

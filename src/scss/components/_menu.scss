@@ -1,0 +1,39 @@
+.menu {
+  @include breakpointsMaxW($bp-991) {
+    display: none;
+  }
+
+  &__list {
+    display: flex;
+    align-items: center;
+  }
+
+  &__item {
+    &:not(:last-child) {
+      margin-right: 60px;
+
+      @include breakpointsMaxW($bp-container) {
+        margin-right: calc(20px + (60 - 20) * ((100vw - 991px) / (1300 - 991)));
+      }
+    }
+  }
+
+  &__link {
+    font-size: 19px;
+    transition: 250ms ease;
+    line-height: 1;
+
+    @include breakpointsMaxW($bp-container) {
+      font-size: calc(16px + (19 - 16) * ((100vw - 991px) / (1300 - 991)));
+    }
+
+    @include breakpointsMaxW($bp-991) {
+      font-size: 16px;
+    }
+
+    &:hover,
+    &.active {
+      color: var(--color-accent);
+    }
+  }
+}

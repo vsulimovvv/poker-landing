@@ -1,0 +1,99 @@
+.mission {
+  @include adaptive-value('padding-top', 90, 40, 1);
+  @include adaptive-value('padding-bottom', 90, 40, 1);
+
+  &__title {
+    @include fz50();
+    line-height: 1.1;
+    @include adaptive-value('margin-bottom', 35, 25, 1);
+  }
+
+  &__text {
+    @include adaptive-value('margin-bottom', 35, 25, 1);
+    @include adaptive-value('font-size', 18, 15, 1);
+  }
+
+  &__note {
+    background-color: #f6f6f6;
+    border-radius: 5px;
+    line-height: 1.4;
+    font-weight: 500;
+    color: #282b32;
+    padding: 30px 35px;
+    @include adaptive-value('font-size', 20, 17, 1);
+
+    @include breakpointsMaxW($bp-991) {
+      padding: 25px;
+    }
+
+    @include breakpointsMaxW($bp-360) {
+      padding: 20px;
+      font-size: 15px;
+    }
+  }
+
+  &__wrapper {
+    display: grid;
+    grid-template-columns: 0.85fr 1fr;
+    gap: 70px;
+
+    @include breakpointsMaxW($bp-container) {
+      grid-template-columns: 1fr 580px;
+      gap: 50px;
+    }
+
+    @include breakpointsMaxW($bp-991) {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+
+    @include breakpointsMaxW($bp-768) {
+      gap: 15px;
+    }
+  }
+
+  &-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 40px 50px;
+    background-color: var(--color-white);
+    border-radius: 5px;
+    @include adaptive-value('padding-top', 40, 15, 1);
+    @include adaptive-value('padding-bottom', 40, 15, 1);
+    @include adaptive-value('padding-left', 50, 15, 1);
+    @include adaptive-value('padding-right', 50, 15, 1);
+
+    &:nth-child(1),
+    &:nth-child(4) {
+      border: 1px solid #dfdfdf;
+    }
+
+    &:nth-child(2) {
+      box-shadow: 0px 18px 68px 0px rgba(0, 0, 0, 0.1);
+    }
+    &:nth-child(3) {
+      box-shadow: 0px 18px 68px 0px rgba(0, 0, 0, 0.1);
+    }
+
+    &__number {
+      @include adaptive-value('font-size', 50, 27, 1);
+      font-weight: 800;
+      color: var(--color-accent);
+      margin-bottom: 5px;
+      width: 100%;
+      line-height: 1;
+    }
+
+    &__text {
+      @include adaptive-value('font-size', 20, 13, 1);
+      line-height: 1.3;
+    }
+  }
+}

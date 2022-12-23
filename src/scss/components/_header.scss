@@ -1,0 +1,100 @@
+.header {
+  padding: 15px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: transparent;
+  z-index: 10;
+  padding-top: 60px;
+  padding-bottom: 15px;
+  color: var(--color-white);
+  transition: 250ms ease;
+
+  @include breakpointsMaxW($bp-768) {
+    padding-top: 15px;
+  }
+
+  &.scroll-header {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    padding: 15px 0;
+    background-color: var(--color-dark);
+  }
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+
+    @include breakpointsMaxW($bp-768) {
+      display: grid;
+      grid-template-columns: repeat(2, auto);
+      grid-template-rows: repeat(2, auto);
+      gap: 14px;
+    }
+  }
+
+  &__logo {
+    width: 200px;
+    height: 45px;
+    margin-right: 85px;
+
+    @include breakpointsMaxW($bp-container) {
+      margin-right: calc(45px + (85 - 45) * ((100vw - 991px) / (1300 - 991)));
+      width: calc(150px + (200 - 150) * ((100vw - 991px) / (1300 - 991)));
+    }
+
+    @include breakpointsMaxW($bp-991) {
+      width: 150px;
+    }
+
+    @include breakpointsMaxW($bp-768) {
+      width: 130px;
+      height: 30px;
+    }
+
+    @include breakpointsMaxW($bp-360) {
+      width: 120px;
+    }
+    
+    img {
+      @include img(contain);
+    }
+  }
+
+  .socials {
+    margin-left: auto;
+    margin-right: 18px;
+
+    @include breakpointsMaxW($bp-768) {
+      grid-column: 1/-1;
+      grid-row: 1/2;
+      width: 100%;
+
+      &__list {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      &__link {
+        width: 100%;
+      }
+    }
+  }
+
+  &__menu {
+    margin-right: 18px;
+  }
+
+  &__btn {
+    flex-shrink: 0;
+
+    @include breakpointsMaxW($bp-768) {
+      justify-self: end;
+    }
+
+    @include breakpointsMaxW($bp-360) {
+      padding: 12px;
+    }
+  }
+}

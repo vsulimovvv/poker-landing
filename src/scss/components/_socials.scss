@@ -1,0 +1,41 @@
+.socials {
+  &__list {
+    display: flex;
+    align-items: center;
+  }
+
+  &__item {
+    &:not(:last-child) {
+      margin-right: 8px;
+    }
+  }
+
+  &__link {
+    width: 36px;
+    height: 36px;
+    background-color: rgba(#ffffff, 0.1);
+    border-radius: 5px;
+    transition: 200ms ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: 15px;
+      height: 15px;
+
+      path {
+        fill: var(--color-white);
+      }
+    }
+
+    &:hover {
+      background-color: var(--color-accent);
+      border-color: var(--color-accent);
+
+      &::after {
+        background-color: var(--color-white);
+      }
+    }
+  }
+}

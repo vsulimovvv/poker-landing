@@ -1,0 +1,29 @@
+@import 'libs';
+@import 'reset';
+@import 'vars';
+@import 'mixins';
+@import 'fonts';
+@import 'global';
+
+@import './animations';
+
+// * ===== Other components
+@import './components/breadcrumbs';
+@import './components/swiper-options';
+@import './components/custom-checkbox';
+@import './components/custom-select';
+@import './components/popups';
+@import './components/footer';
+@import './components/header';
+@import './components/hero';
+@import './components/contacts';
+@import './components/menu-mobile';
+@import './components/socials';
+
+// * ===== Section Components
+@import './components/advantages';
+@import './components/coaches';
+@import './components/mission';
+@import './components/menu';
+@import './components/results';
+@import './components/request';

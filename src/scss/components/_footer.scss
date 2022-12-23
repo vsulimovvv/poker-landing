@@ -1,0 +1,24 @@
+.footer {
+  padding: 25px 0;
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @include breakpointsMaxW($bp-768) {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  }
+
+  &__copy {
+    @include adaptive-value('font-size', 15, 13, 1);
+    color: #9a9eaa;
+
+    @include breakpointsMaxW($bp-768) {
+      margin-bottom: 10px;
+    }
+  }
+}

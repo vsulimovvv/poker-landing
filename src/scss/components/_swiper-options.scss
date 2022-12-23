@@ -1,0 +1,54 @@
+.swiper-pagination {
+  &-bullet {
+    width: 6px;
+    height: 6px;
+    background-color: #c3c3c3;
+    opacity: 1;
+
+    &-active {
+      background-color: var(--color-accent);
+    }
+  }
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  width: 32px;
+  height: 32px;
+  transition: 200ms ease;
+  top: 60%;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background-color: var(--color-accent);
+
+  &::after {
+    @include elDef();
+    width: 40%;
+    height: 40%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--color-white);
+    @include maskImage(url('../img/icons/chevron.svg'), contain);
+    transition: 200ms ease;
+  }
+
+  &:hover {
+    background-color: var(--color-green);
+
+    &::after {
+    }
+  }
+}
+
+.swiper-button-next {
+  &::after {
+    transform: translate(-50%, -50%) rotate(-90deg);
+  }
+}
+
+.swiper-button-prev {
+  &::after {
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+}
