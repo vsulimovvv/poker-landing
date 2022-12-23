@@ -1130,6 +1130,12 @@ body.no-scroll {
   height: 250px;
   -o-object-fit: contain;
      object-fit: contain;
+  display: none;
+}
+@media (max-width: 576px) {
+  .hero__img {
+    display: block;
+  }
 }
 .hero__offer {
   width: 60%;
